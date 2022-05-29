@@ -2,12 +2,11 @@ version: "2.1"
 services: 
   vrising:
     container_name: vrising-server
-    image: vrising:latest
+    build: .
     volumes: 
-      - /home/googlrr/VRisingServer:/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer/Saves
-      - /home/googlrr/VRisingSettings:/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer/Settings/
+      - {{ HM_DATA_DIR }}/save:/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer/Saves
+      - ./settings:/root/.wine/drive_c/users/root/AppData/LocalLow/Stunlock Studios/VRisingServer/Settings/
     ports: 
       - "27015:27015/udp"
       - "27016:27016/udp"
     restart: unless-stopped
-    tty: true
